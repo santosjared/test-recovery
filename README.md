@@ -15,7 +15,7 @@ npm install
 ```bash
 npm run dev
 ```
-o
+o modo produccion
 ```bash
 npm run start
 ```
