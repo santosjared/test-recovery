@@ -59,6 +59,7 @@ const updateUser = async (req, res) => {
         }
         const user = await User.update({ username, password }, {
             where: { id },
+            returning: true,
         });
         res.json(user);
     } catch (error) {
@@ -122,7 +123,7 @@ const activeInactive = async(req, res) => {
         const user = await User.findByPk(id);
         if (!user) {
             return res.status(404).json({
-                message: `Usuario con ${id} no encontrado`,
+                message: `Usuario con id ${id} no encontrado`,
             });
         }
         if(user.status === status){
