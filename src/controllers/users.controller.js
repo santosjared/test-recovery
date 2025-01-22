@@ -1,6 +1,7 @@
 import logger from '../logs/logger.js';
 import { User } from '../models/users.js';
 import { Task } from '../models/task.js';
+import { status } from '../constants/index.js';
 
 const getUser = async (req, res) => {
     try {
@@ -8,7 +9,7 @@ const getUser = async (req, res) => {
             attributes: ['id', 'username', 'password', 'status'],
             order: [['id', 'ASC']],
             where: {
-                status: 'ACTIVE',
+                status: status.ACTIVE,
             }
         });
         res.json(users);
@@ -78,7 +79,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const user = await User.update({ status: 'INACTIVE' }, {
+        const user = await User.update({ status: status.INACTIVE }, {
             where: { id },
         });
         if(user == 0){
