@@ -11,6 +11,13 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+app.get('/', (req, res) => {    
+    res.json({
+        nombre: 'Santos Machaca Lopez',
+        telefono:'72381722',
+        paths:{users:'/api/users',login:'/api/login',tasks:'/api/tasks'}
+    });
+});
 app.use('/api', usersRoutes)
 app.use('/api', authRoutes)
 app.use('/api', authMiddleware, tasksRoutes)
